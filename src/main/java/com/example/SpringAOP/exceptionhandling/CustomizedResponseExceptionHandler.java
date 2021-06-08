@@ -14,6 +14,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +24,8 @@ import java.util.List;
 public class CustomizedResponseExceptionHandler
         extends ResponseEntityExceptionHandler {
     @ExceptionHandler({Exception.class,RuntimeException.class})
-    public final ResponseEntity<Object>handleNotFoundExceptions(Exception ex, WebRequest request) {
-        ExceptionLog exceptionResponse= new ExceptionLog(ex.getMessage(),new Date());
+    public final ResponseEntity<Object>handleNotFoundExceptions(Exception ex, HttpServletRequest request) {
+        ExceptionLog exceptionResponse= new ExceptionLog(ex.getMessage(),new Date(),request.getRequestURI());
         System.out.println("NOt found Exception called-->>");
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }

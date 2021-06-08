@@ -10,7 +10,11 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 
@@ -25,8 +29,11 @@ public class ExceptionLoggingPoint {
         System.out.println("Exception>>>>>>>>>>");
         System.out.println(jp.getSignature());
         System.out.println(jp.getSourceLocation());
-
-        ExceptionLog exceptionLog=new ExceptionLog(ex.getMessage(),new Date());
+       // System.out.println(request.getContextPath());
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+                .getRequest();
+        System.out.println(request.getRequestURI());
+        ExceptionLog exceptionLog=new ExceptionLog(ex.getMessage(),new Date(),request.getRequestURI());
        exceptionLogRepository.save(exceptionLog);
 //
 

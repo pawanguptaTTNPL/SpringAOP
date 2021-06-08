@@ -17,18 +17,11 @@ public class Userservice {
 //     //   System.out.println("hello");
 //    }
 
-    public User getUser(Long id) {
+    public User getUser(Long id) throws Exception {
         Optional<User> user=userRepository.findById(id);
         System.out.println("after null");
         if(user.isEmpty())
-        {
-            try {
-                throw new Exception("User Not Found");
-
-
-            } catch (Exception e) {
-                //
-            }
+        {         throw new Exception("User Not Found");
 
         }
        return user.get();

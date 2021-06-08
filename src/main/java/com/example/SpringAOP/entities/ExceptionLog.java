@@ -20,9 +20,11 @@ public class ExceptionLog {
     private Long id;
     private String message;
     private Date timestamp;
+    private String path;
 
-    public ExceptionLog(String message, Date timestamp) {
+    public ExceptionLog(String message, Date timestamp,String path) {
         this.message = message;
         this.timestamp = timestamp;
+        this.path=path;
     }
 }

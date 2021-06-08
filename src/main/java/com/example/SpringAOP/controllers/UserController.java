@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     Userservice userservice;
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable Long id)  {
+    public User getUser(@PathVariable Long id) throws Exception {
 //        throw new Exception("LLLL");
         User user=userservice.getUser(id);
         if(user==null)

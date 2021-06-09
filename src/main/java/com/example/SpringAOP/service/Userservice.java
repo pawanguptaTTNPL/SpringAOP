@@ -1,6 +1,8 @@
 package com.example.SpringAOP.service;
 
 import com.example.SpringAOP.entities.User;
+
+import com.example.SpringAOP.exceptionhandling.UserNotFoundException;
 import com.example.SpringAOP.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,9 @@ public class Userservice {
         Optional<User> user=userRepository.findById(id);
         System.out.println("after null");
         if(user.isEmpty())
-        {         throw new Exception("User Not Found");
-
+        {
+            //  throw new Exception("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
        return user.get();
     }

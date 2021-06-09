@@ -1,5 +1,7 @@
 package com.example.SpringAOP;
 
+import com.example.SpringAOP.entities.User;
+import com.example.SpringAOP.repository.UserRepository;
 import com.example.SpringAOP.service.Userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -19,6 +21,9 @@ public class SpringAopApplication {
 		ApplicationContext applicationContext=SpringApplication.run(SpringAopApplication.class, args);
 //		Userservice userservice=applicationContext.getBean(Userservice.class);
 //		userservice.throwuserException();
+
+
+
 
 
 	}

@@ -24,11 +24,12 @@ public class ExceptionLoggingPoint {
     @Autowired
     ExceptionLogRepository exceptionLogRepository;
 
-    @AfterThrowing(pointcut = "execution(* com.example.SpringAOP.service.*.*(..))", throwing = "ex")
+    @AfterThrowing(pointcut = "execution(* com.example.SpringAOP.*.*.*(..))", throwing = "ex")
     public void logError(JoinPoint jp, Exception ex)throws Throwable {
         System.out.println("Exception>>>>>>>>>>");
         System.out.println(jp.getSignature());
         System.out.println(jp.getSourceLocation());
+
        // System.out.println(request.getContextPath());
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                 .getRequest();

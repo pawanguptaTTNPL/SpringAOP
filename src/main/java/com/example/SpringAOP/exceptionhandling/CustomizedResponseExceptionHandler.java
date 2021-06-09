@@ -30,5 +30,11 @@ public class CustomizedResponseExceptionHandler
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler({UserNotFoundException.class})
+    public final ResponseEntity<Object>handleUserNotFoundExceptions(Exception ex, HttpServletRequest request) {
+        ExceptionLog exceptionResponse= new ExceptionLog(ex.getMessage(),new Date(),request.getRequestURI());
+        System.out.println(" User Not found Exception Custom");
+        return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
 
 }

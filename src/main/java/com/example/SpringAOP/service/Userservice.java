@@ -21,12 +21,10 @@ public class Userservice {
 
     public User getUser(Long id) throws Exception {
         Optional<User> user=userRepository.findById(id);
-        System.out.println("after null");
-        if(user.isEmpty())
-        {
+       if(user.isEmpty()){
             //  throw new Exception("User Not Found");
             throw new UserNotFoundException("User Not Found");
-        }
+       }
        return user.get();
     }
 }
